@@ -64,7 +64,7 @@ rankou-site/
 ```bash
 npm install
 npm run dev        # http://localhost:3000
-npm run generate   # SSG em .output/public
+npm run generate   # SSG em .output/public (no Netlify, o preset grava em dist)
 npm run typecheck
 ```
 
@@ -147,6 +147,10 @@ O GitHub Pages de projeto sempre expõe `https://<usuario>.github.io/<repo>`. Op
 Recomendação: se ainda não quer comprar domínio, use **Netlify** (ou Cloudflare Pages) para ter uma
 URL limpa de graça, mantendo o GitHub como fonte e a dashboard publicando normalmente. Quando
 escolher o host final, atualize `SITE_URL` no `.env` do money-printer para a nova URL.
+
+> No Netlify, o Nitro detecta `NETLIFY` e o `nuxt generate` escreve em `dist`; por isso o
+> `netlify.toml` publica `dist`. No GitHub Actions o output continua em `.output/public`. Os dois
+> são sites estáticos completos.
 
 ## Formato do conteúdo
 

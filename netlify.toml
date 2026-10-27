@@ -1,7 +1,10 @@
 [build]
   command = "npm run generate"
-  publish = ".output/public"
+  # On Netlify, Nitro detects NETLIFY and writes the static site to dist.
+  publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "22"
+  NODE_VERSION = "24"
   NUXT_APP_BASE_URL = "/"
+  # Nuxt/Content need the dev dependencies during the static build.
+  NPM_FLAGS = "--include=dev"
