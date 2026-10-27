@@ -1,0 +1,7 @@
+[build]
+  command = "npm run generate"
+  publish = ".output/public"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NUXT_APP_BASE_URL = "/"

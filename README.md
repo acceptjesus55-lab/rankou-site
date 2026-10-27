@@ -133,6 +133,21 @@ npm start -- site:publish --id=<uuid> --preview   # projeto não aprovado, sem p
 > primeiro deploy, envie `sitemap.xml` no Google Search Console. Em project pages o `robots.txt` do
 > domínio pertence ao GitHub; com domínio próprio (base `/`) ele é gerado normalmente.
 
+## URL bonita para a bio
+
+O GitHub Pages de projeto sempre expõe `https://<usuario>.github.io/<repo>`. Opções:
+
+| Opção | URL | Custo | Observação |
+| --- | --- | --- | --- |
+| Netlify | `https://rankou.netlify.app` | grátis | Mais limpo e imediato. Conecte o repo; o `netlify.toml` já define build e publish. O canonical usa o `URL` do Netlify automaticamente. |
+| Cloudflare Pages | `https://rankou.pages.dev` | grátis | Build `npm run generate`, output `.output/public`, env `NUXT_APP_BASE_URL=/` e `NUXT_PUBLIC_SITE_URL=https://rankou.pages.dev`. |
+| TinyURL/Linktree | `https://tinyurl.com/rankou` ou `https://linktr.ee/rankou` | grátis | Resolve em 1 minuto para a bio; é redirect (o navegador mostra a URL final) e o Linktree adiciona uma etapa. |
+| Domínio próprio | `https://rankou.com.br` | ~R$40/ano | Melhor para marca/SEO. Crie `public/CNAME`, aponte o DNS para o Pages e defina `SITE_URL=https://rankou.com.br` nas variáveis do repo. |
+
+Recomendação: se ainda não quer comprar domínio, use **Netlify** (ou Cloudflare Pages) para ter uma
+URL limpa de graça, mantendo o GitHub como fonte e a dashboard publicando normalmente. Quando
+escolher o host final, atualize `SITE_URL` no `.env` do money-printer para a nova URL.
+
 ## Formato do conteúdo
 
 Cada `content/top5/<slug>.md` tem frontmatter tipado e um corpo Markdown:

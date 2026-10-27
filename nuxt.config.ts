@@ -1,5 +1,10 @@
 const baseURL = process.env.NUXT_APP_BASE_URL || '/'
-const siteURL = process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+// Netlify exposes the site URL as URL during the build; GitHub Actions sets NUXT_PUBLIC_SITE_URL.
+const siteURL = (
+  process.env.NUXT_PUBLIC_SITE_URL ||
+  process.env.URL ||
+  'http://localhost:3000'
+).replace(/\/+$/, '')
 const hasBasePath = baseURL !== '/'
 
 function withBase(path: string): string {
