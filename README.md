@@ -152,6 +152,20 @@ escolher o host final, atualize `SITE_URL` no `.env` do money-printer para a nov
 > `netlify.toml` publica `dist`. No GitHub Actions o output continua em `.output/public`. Os dois
 > são sites estáticos completos.
 
+## Segurança
+
+- Este repositório é público e **não contém segredos**: `.env`, `auth.json`, banco e `output/` ficam
+  no money-printer (local/privado).
+- Os builds rodam no GitHub Actions e no Netlify, não na sua máquina. O workflow usa
+  `contents: read`, `pages: write` e `id-token: write`, sem secrets.
+- O site é estático: sem login, banco, pagamento ou dados de usuário.
+- URLs de produto são restritas a `http(s)`; nome/categoria no corpo do Markdown são escapados para
+  evitar injeção de HTML.
+- Use 2FA no GitHub/Netlify, não faça merge de PR desconhecido e não exponha o dashboard local
+  (`127.0.0.1:4317`) fora da máquina.
+- Mantenha as dependências atualizadas (`npm audit`); avisos de dependências de build não dão acesso
+  à sua máquina.
+
 ## Formato do conteúdo
 
 Cada `content/top5/<slug>.md` tem frontmatter tipado e um corpo Markdown:

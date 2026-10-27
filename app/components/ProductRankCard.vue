@@ -9,7 +9,10 @@ const off = computed(() =>
   discountPercent(props.product.price, props.product.originalPrice, props.product.discountPercent),
 )
 
-const href = computed(() => props.product.affiliateUrl || props.product.productUrl)
+const href = computed(() => {
+  const value = props.product.affiliateUrl || props.product.productUrl
+  return /^https?:\/\//i.test(value) ? value : '#'
+})
 
 const seller = computed(() => {
   const value = props.product.seller?.trim()

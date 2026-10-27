@@ -1,5 +1,10 @@
 import { defineCollection, defineContentConfig, z } from '@nuxt/content'
 
+const httpUrlSchema = z
+  .string()
+  .url()
+  .refine((value) => /^https?:\/\//i.test(value), 'A URL deve usar http(s)')
+
 const productSchema = z.object({
   rank: z.number().int().min(1).max(5),
   name: z.string(),
@@ -14,8 +19,8 @@ const productSchema = z.object({
   image: z.string(),
   imageFallback: z.string(),
   thumb: z.string(),
-  productUrl: z.string().url(),
-  affiliateUrl: z.string().url(),
+  productUrl: httpUrlSchema,
+  affiliateUrl: httpUrlSchema,
   highlight: z.string().optional(),
   description: z.string(),
 })
