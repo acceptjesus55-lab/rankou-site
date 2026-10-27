@@ -113,13 +113,13 @@ npm start -- site:publish --id=<uuid> --preview   # projeto não aprovado, sem p
    git init
    git add .
    git commit -m "site: initial"
-   git branch -M main
+   git branch -M master
    git remote add origin https://github.com/<usuario>/rankou-site.git
-   git push -u origin main
+   git push -u origin master
    ```
 
 2. Em **Settings → Pages**, escolha **GitHub Actions** como source.
-3. O workflow `.github/workflows/deploy.yml` roda em cada push na `main` e publica `.output/public`.
+3. O workflow `.github/workflows/deploy.yml` roda em cada push na `master` e publica `.output/public`.
 4. O workflow calcula sozinho:
    - `NUXT_PUBLIC_SITE_URL=https://<owner>.github.io` (origem, sem path)
    - `NUXT_APP_BASE_URL=/<repo>/` (subpath do GitHub Pages)
