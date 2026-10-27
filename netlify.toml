@@ -6,5 +6,7 @@
 [build.environment]
   NODE_VERSION = "24"
   NUXT_APP_BASE_URL = "/"
+  # Canonical/OG/sitemap must use the public site name, not the Netlify default URL.
+  NUXT_PUBLIC_SITE_URL = "https://rankou.netlify.app"
   # Nuxt/Content need the dev dependencies during the static build.
   NPM_FLAGS = "--include=dev"
